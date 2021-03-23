@@ -21,56 +21,60 @@ export default class CytoGraph extends Vue {
     console.log("mounted");
     console.log(this.course, this.courses);
     (window as any).cytoscape = cytoscape;
-    // setTimeout(() => {
-    console.log("in settimeout");
-    this.cy = cytoscape({
-      container: document.getElementById("cy"), // container to render in
+    setTimeout(() => {
+      console.log("in settimeout");
+      // console.log("returning");
+      // return; //uncomment this return to see the bug disappear.
+      // this.cy = cytoscape();
+      this.cy = cytoscape({
+        container: document.getElementById("cy"), // container to render in
 
-      elements: [
-        // list of graph elements to start with
-        {
-          // node a
-          data: { id: "a" }
-        },
-        {
-          // node b
-          data: { id: "b" }
-        },
-        {
-          // edge ab
-          data: { id: "ab", source: "a", target: "b" }
-        }
-      ],
-
-      style: [
-        // the stylesheet for the graph
-        {
-          selector: "node",
-          style: {
-            "background-color": "#666",
-            label: "data(id)"
+        elements: [
+          // list of graph elements to start with
+          {
+            // node a
+            data: { id: "a" }
+          },
+          {
+            // node b
+            data: { id: "b" }
+          },
+          {
+            // edge ab
+            data: { id: "ab", source: "a", target: "b" }
           }
-        },
+        ],
 
-        {
-          selector: "edge",
-          style: {
-            width: 3,
-            "line-color": "#ccc",
-            "target-arrow-color": "#ccc",
-            "target-arrow-shape": "triangle",
-            "curve-style": "bezier"
+        style: [
+          // the stylesheet for the graph
+          {
+            selector: "node",
+            style: {
+              "background-color": "#666",
+              label: "data(id)"
+            }
+          },
+
+          {
+            selector: "edge",
+            style: {
+              width: 3,
+              "line-color": "#ccc",
+              "target-arrow-color": "#ccc",
+              "target-arrow-shape": "triangle",
+              "curve-style": "bezier"
+            }
           }
-        }
-      ],
+        ],
 
-      layout: {
-        name: "grid",
-        rows: 1
-      }
-    });
-    console.log(this.cy);
-    // }, 3000);
+        layout: {
+          name: "grid",
+          rows: 1
+        }
+      });
+
+      console.log(this.cy);
+    }, 0);
 
     console.log("cy is", this.cy, cytoscape);
   }
