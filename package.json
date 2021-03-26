@@ -15,6 +15,7 @@
     "core-js": "^3.9.1",
     "cytoscape": "^3.18.1",
     "nuxt": "^2.15.3",
+    "vis-network": "^9.0.4",
     "vue-class-component": "^7.2.6",
     "vue-property-decorator": "^9.1.2"
   },
