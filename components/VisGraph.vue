@@ -103,6 +103,7 @@ export default class VisGraph extends Vue {
   selectedCourseID: string = "";
   selectedCourse: CourseMaster | null = null;
   onlyImmediate: boolean = false; //only show direct pre/coreqs.
+  junctionCounter: number = 0; //used to prevent duplicate con/dis-junctions sometimes. gives them a unique id.
   immediateChanged() {
     this.selectionChanged(this.selectedCourse?.id || "");
   }
@@ -158,6 +159,7 @@ export default class VisGraph extends Vue {
       console.log("selectedCourse", c, c?.prereqTree, c?.coreqTree);
       //@ts-ignore
       c.shape = SHAPES.course;
+
       const [nodes, edges] = this.mkNodesAndEdgesFor(c);
       //@ts-ignore
       c.color = "white";
@@ -165,7 +167,7 @@ export default class VisGraph extends Vue {
       c.title = htmlTitle(mkCourseTitle(c));
       //@ts-ignore
       c.level = 1;
-      console.log("adding title", c.name);
+      // console.log("adding title", c.name);
       // c.title = c.name;
       this.nodes.add(c);
 
@@ -185,6 +187,7 @@ export default class VisGraph extends Vue {
       }, 10);
       (window as any).graph = network;
       (window as any).edges = this.edges;
+      (window as any).nodes = this.nodes;
       if (this.nodes && this.edges) {
         // console.log("setting data");
         // this.network?.setData({ nodes: this.nodes, edges: this.edges });
@@ -198,6 +201,7 @@ export default class VisGraph extends Vue {
     level: number = 1
   ): [any[], any[]] {
     currentCourse = c; //I know this is naughty, but I really really need it for not duplicating list occurances in ranges.
+    this.junctionCounter = 0; //reset this to zero before first call to mkNodesAndEdgesFor
     if (c.prereqTree) {
       // console.log(
       //   "prereq exists for class:",
@@ -294,7 +298,7 @@ export default class VisGraph extends Vue {
     }
     function addNode(id: string, label: string, shape: string, title?: string) {
       if (nodes.find(x => x.id == id)) {
-        // console.log("REFUSING TO ADD NODE (EXISTS) " + id);
+        console.log("REFUSING TO ADD NODE (EXISTS) " + id);
       } else {
         const x: any = {
           id: id,
@@ -445,11 +449,13 @@ export default class VisGraph extends Vue {
     } else {
       //req is conjuction
       const isAnd2 = req.op == "AND";
+      const jc = this.junctionCounter;
+      this.junctionCounter++;
       if (isAnd2) {
         if (src.id.endsWith("AND")) {
           //then keep it.
         } else {
-          const src2 = { id: src.id + "AND", label: "ALL" };
+          const src2 = { id: src.id + jc + "AND", label: "ALL" };
           addNode(src2.id, src2.label, SHAPES.conjuction);
           level++;
           addEdge(src.id, src2.id);
@@ -460,7 +466,7 @@ export default class VisGraph extends Vue {
         if (src.id.endsWith("OR")) {
           //then keep it.
         } else {
-          const src2 = { id: src.id + "OR", label: "ONE OF" };
+          const src2 = { id: src.id + jc + "OR", label: "ONE OF" };
           addNode(src2.id, src2.label, SHAPES.disjuction);
           level++;
           addEdge(src.id, src2.id);
