@@ -10,9 +10,9 @@
     <div class="d-flex">
       <div id="cy"></div>
       <div id="buttons" class="d-flex flex-column">
-        <v-btn @click="stabalize">stabalize</v-btn>
+        <v-btn @click="stabalize">stabilize</v-btn>
         <v-btn @click="defaultLayout">Fluid Layout</v-btn>
-        <v-btn @click="heirarical">heirarical view</v-btn>
+        <v-btn @click="heirarical">hierarchical view</v-btn>
         <v-checkbox
           v-model="onlyImmediate"
           :label="`Direct Requirements only.`"
@@ -593,13 +593,13 @@ export default class VisGraph extends Vue {
       physics: {
         hierarchicalRepulsion: {
           avoidOverlap: 1
-        },
-        barnesHut: {
-          avoidOverlap: 1
-        },
-        forceAtlas2Based: {
-          avoidOverlap: 1
         }
+        // barnesHut: {
+        //   avoidOverlap: 0.5
+        // },
+        // forceAtlas2Based: {
+        //   avoidOverlap: 0.5
+        // }
       }
     };
 
