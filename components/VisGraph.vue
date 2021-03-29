@@ -496,21 +496,21 @@ export default class VisGraph extends Vue {
     // console.log("vis-dat", visdat);
     console.log(this.course, this.courses);
     (window as any).courses = this.courses;
-    console.log(
-      "courese with lists",
-      this.courses.filter(x =>
-        (x.prereqFormula + x.coreqFormula).includes("From")
-      )
-      // .map(
-      //   x =>
-      //     x.department +
-      //     x.number +
-      //     "\n" +
-      //     x.prereqFormula +
-      //     "\n" +
-      //     x.coreqFormula
-      // )
-    );
+    // console.log(
+    //   "courese with lists",
+    //   this.courses.filter(x =>
+    //     (x.prereqFormula + x.coreqFormula).includes("From")
+    //   )
+    // .map(
+    //   x =>
+    //     x.department +
+    //     x.number +
+    //     "\n" +
+    //     x.prereqFormula +
+    //     "\n" +
+    //     x.coreqFormula
+    // )
+    // );
     this.courses.forEach(c => {
       (c as any).label = c.department + " " + c.number;
     });

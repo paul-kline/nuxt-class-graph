@@ -28,9 +28,9 @@
           >Shunting-yard algorithm</a
         >
         using the AND/OR operators and the location of parentheses. The co/pre
-        req parse trees are attached to the course master data. The render
-        method handles flattening AND/OR parse trees to avoid superfluous
-        dis/con junctions.
+        req parse trees are attached to the course master data which is embedded
+        in this application. The render method handles flattening AND/OR parse
+        trees to avoid superfluous dis/con junctions.
       </p>
     </div>
 
@@ -40,7 +40,7 @@
       Errors in layout are due to the visjs graph layout algorithm, which I
       agree are frustrating, but I'm not about to write my own network graph
       library. Sometimes, you may prefer to move things in the 'fluid' layout to
-      avoid overlaps, then change to the heirarical layout.
+      avoid overlaps, then change to the hierarchical layout.
     </div>
     <div>
       <h1>Usage</h1>
@@ -56,10 +56,10 @@
         By default, the dependency graph displayed is recursive-- that is to
         say, all the pre/co reqs for all pre/co reqs (and so on and so forth)
         are also displayed. Sometimes, this can become unwieldy (as it is with
-        ED422 for example, which has a large list to choose from). Therefore,
-        you have the option on the right hand side to select "Direct
-        Requirements only" which will only list the immediate class requirements
-        in the co/pre reqs.
+        ED422 for example, which has a large list of classes). Therefore, you
+        have the option on the right hand side to select "Direct Requirements
+        only" which will only list the immediate class requirements in the
+        co/pre reqs.
       </p>
       <h3>Fit-to-screen</h3>
       <p>
@@ -71,7 +71,7 @@
         An alternative graph view can be employed by clicking the 'fluid layout'
         button. This physics simulation tries to space everything equally
         repulsively. Sometimes, you may prefer to move things in this layout to
-        avoid overlaps, then change to the heirarical layout.
+        avoid overlaps, then change to the hierarchical layout.
       </p>
       <div>
         <h1>Layout</h1>
@@ -92,6 +92,17 @@
           disjuction '\/') joins them.
         </p>
         <p>Class standing or Major requirements are drawn in boxes.</p>
+        <h3>Course Information</h3>
+        <p>
+          Additional course information like credits, course name, and
+          description will be displayed when a course node is hovered over or
+          clicked on.
+        </p>
+        <p>
+          Sometimes, a course is listed both as a pre-req and a co-req, so for
+          clarification, be sure to hover over the course node to read the
+          description.
+        </p>
       </div>
     </div>
   </div></template
