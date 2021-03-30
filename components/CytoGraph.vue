@@ -11,11 +11,11 @@ import cytoscape from "cytoscape";
 //@ts-ignore
 // import popper from "cytoscape-popper";
 // cytoscape.use(popper);
+let cy: cytoscape.Core | null = null;
 @Component
 export default class CytoGraph extends Vue {
   @Prop() course!: CourseMaster;
   @Prop() courses!: CourseMaster[];
-  cy: cytoscape.Core | null = null;
 
   mounted() {
     console.log("mounted");
@@ -26,7 +26,7 @@ export default class CytoGraph extends Vue {
       // console.log("returning");
       // return; //uncomment this return to see the bug disappear.
       // this.cy = cytoscape();
-      this.cy = cytoscape({
+      cy = cytoscape({
         container: document.getElementById("cy"), // container to render in
 
         elements: [
@@ -73,10 +73,10 @@ export default class CytoGraph extends Vue {
         }
       });
 
-      console.log(this.cy);
+      console.log(cy);
     }, 0);
 
-    console.log("cy is", this.cy, cytoscape);
+    console.log("cy is", cy, cytoscape);
   }
 }
 </script>

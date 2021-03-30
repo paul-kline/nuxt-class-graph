@@ -588,6 +588,11 @@ export default class VisGraph extends Vue {
       nodes: {
         level: 1
       },
+      edges: {
+        selectionWidth: function(width: number) {
+          return width * 5;
+        }
+      },
       layout: {
         // hierarchical: {
         //   direction: "UD",

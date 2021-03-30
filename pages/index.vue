@@ -34,6 +34,7 @@ export default class Index extends Vue {
       false
     );
     setTimeout(() => {
+      if (!window.opener) return;
       window.opener.postMessage("I'm readyydy", "*");
     }, 0);
   }
