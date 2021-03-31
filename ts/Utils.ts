@@ -11,7 +11,7 @@ type CourseMaster = {
   coreqFormula: string;
   prereqTree: any;
   coreqTree: any;
-  id: string;
+  id: string; //this field is simply concatenation of department and number.
 };
 let _courses: CourseMaster[] | undefined = undefined;
 function getCourses(): CourseMaster[] {

@@ -104,6 +104,9 @@
           description.
         </p>
       </div>
+      <a href="https://github.com/paul-kline/nuxt-class-graph" target="_blank"
+        >Source code</a
+      >
     </div>
   </div></template
 >

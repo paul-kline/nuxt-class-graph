@@ -4,6 +4,7 @@
       item-value="id"
       :item-text="e => e.id + ' ' + e.name"
       :items="courses"
+      label="Search for a class..."
       :value="selectedCourseID"
       @change="selectionChanged"
     ></v-autocomplete>
@@ -33,12 +34,12 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 import * as vis from "vis-network";
 import * as visdat from "vis-data";
 import { CourseMaster } from "~/ts/Utils";
-type Op = "AND" | "OR";
-type Ls = "Range" | "List";
-type List = { credits: number; ls: string[]; gpa?: number; type: Ls };
-type Conj = { op: Op; left: Req; right: Req };
 type Req = string | Conj | Course | List;
+type Conj = { op: Op; left: Req; right: Req };
+type Op = "AND" | "OR";
 type Course = { course: string; gpa: number };
+type List = { credits: number; ls: string[]; gpa?: number; type: Ls };
+type Ls = "Range" | "List";
 
 function isCourse(x: Course | Conj | List): x is Course {
   return (x as Course).course !== undefined;
