@@ -1,7 +1,7 @@
 <template>
   <v-app dark>
     <v-app-bar fixed app>
-      <v-toolbar-title v-text="title" style="min-width:11.8em" />
+      <v-toolbar-title v-text="title" class="mytitle" />
       <v-tabs align-with-title>
         <v-tab v-for="item in items" :key="item.title" :to="item.to">{{
           item.title
@@ -44,3 +44,13 @@ export default {
   }
 };
 </script>
+<style>
+.mytitle {
+  min-width: 11.8em !important;
+}
+@media only screen and (max-width: 600px) {
+  .mytitle {
+    min-width: 1em !important;
+  }
+}
+</style>

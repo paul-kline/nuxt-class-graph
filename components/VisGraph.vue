@@ -8,10 +8,14 @@
       :value="selectedCourseID"
       @change="selectionChanged"
     ></v-autocomplete>
-    <div class="d-flex">
+    <div class="graph-and-buttons">
       <div id="cy"></div>
-      <div id="buttons" class="d-flex flex-column">
-        <v-btn @click="stabalize">stabilize</v-btn>
+      <div id="buttons" class="buttons">
+        <v-btn
+          @click="stabalize"
+          title="stop animation and center graph in window"
+          >stabilize</v-btn
+        >
         <v-btn @click="defaultLayout">Fluid Layout</v-btn>
         <v-btn @click="heirarical">hierarchical view</v-btn>
         <v-checkbox
@@ -20,9 +24,9 @@
           @change="immediateChanged"
         ></v-checkbox>
         <!-- <v-btn @click="heirarical2">heirarical 2</v-btn> -->
-        <div v-if="selectedCourse" style="max-width:12vw">
+        <div v-if="selectedCourse" class="selected-course">
           <div>PreReq: {{ selectedCourse.prereqFormula || "None" }}</div>
-          <br />
+          <br class="lb" />
           <div>CoReq: {{ selectedCourse.coreqFormula || "None" }}</div>
         </div>
       </div>
@@ -626,11 +630,44 @@ export default class VisGraph extends Vue {
 @import url("vis-network/dist/dist/vis-network.css");
 
 #cy {
-  width: 80vw;
-  height: 70vh;
+  width: max-width;
+  height: 71vh;
   display: block;
   border: 1px;
   border-style: solid;
   background: grey;
+}
+.graph-and-buttons {
+  display: flex;
+  flex-direction: row;
+}
+.buttons {
+  display: flex;
+  flex-direction: column;
+}
+.selected-course {
+  max-width: 12vw;
+  overflow-wrap: break-word;
+}
+.lb {
+  display: block;
+}
+@media only screen and (max-width: 600px) {
+  .graph-and-buttons {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .lb {
+    display: none;
+  }
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .selected-course {
+    max-width: none;
+    overflow-wrap: break-word;
+  }
 }
 </style>
