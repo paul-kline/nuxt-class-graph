@@ -9,7 +9,7 @@
       @change="selectionChanged"
     ></v-autocomplete>
     <div class="graph-and-buttons">
-      <div id="cy"></div>
+      <div id="cy" class="cy-width"></div>
       <div id="buttons" class="buttons">
         <v-btn
           @click="stabalize"
@@ -630,12 +630,16 @@ export default class VisGraph extends Vue {
 @import url("vis-network/dist/dist/vis-network.css");
 
 #cy {
-  width: max-width;
   height: 71vh;
   display: block;
   border: 1px;
+  flex-grow: 10;
   border-style: solid;
   background: grey;
+}
+.cy-width {
+  // width: max-content;
+  // min-width: 70vw;
 }
 .graph-and-buttons {
   display: flex;
